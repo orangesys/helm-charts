@@ -239,7 +239,7 @@ config:
   # @default -- See `values.yaml`
   snippets:
     pipelineStages:
-      - cri: {}
+      - docker: {}
     common:
       - action: replace
         source_labels:
@@ -342,6 +342,10 @@ config:
             regex: ''
             source_labels:
               - app
+          - action: replace
+            source_labels:
+              - __meta_kubernetes_pod_label_env
+            target_label: env
           - action: replace
             source_labels:
               - __meta_kubernetes_pod_label_component
